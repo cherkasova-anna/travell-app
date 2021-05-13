@@ -1,0 +1,54 @@
+.nav {
+  background-color: #083D49;
+  color: whitesmoke;
+  font-family: 'Pacifico', cursive;
+  //font-family: 'Reggae One', cursive;
+  font-size: 30px;
+}
+
+.content {
+  width: 100%;
+  height: calc(100% - 64px);
+  background: url("../../assets/container.jpg") no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
+  &__container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.example-card {
+  margin:0 25% 0 25%;
+  top: 50px;
+  min-height: 400px;
+  min-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+
+.mat-card{
+  display:flex;
+  flex-direction: column;
+}
+
+.mat-card-header {
+  flex-shrink: 0;
+}
+
+.mat-card-content{
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.btn {
+  background-color: lightgrey;
+}
