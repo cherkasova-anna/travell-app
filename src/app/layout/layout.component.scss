@@ -1,7 +1,7 @@
 .nav {
-  background-color: #083D49;
+  background-color: #083d49;
   color: whitesmoke;
-  font-family: 'Pacifico', cursive;
+  font-family: "Pacifico", cursive;
   //font-family: 'Reggae One', cursive;
   font-size: 30px;
 }
@@ -24,19 +24,19 @@
 }
 
 .example-card {
-  margin:0 25% 0 25%;
+  margin: 0 25% 0 25%;
   top: 50px;
   min-height: 400px;
   min-width: 400px;
 }
 
 .example-header-image {
-  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
 
-.mat-card{
-  display:flex;
+.mat-card {
+  display: flex;
   flex-direction: column;
 }
 
@@ -44,7 +44,7 @@
   flex-shrink: 0;
 }
 
-.mat-card-content{
+.mat-card-content {
   flex-grow: 1;
   overflow: auto;
 }
