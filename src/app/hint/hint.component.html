@@ -1,1 +1,4 @@
-<p>hint works!</p>
+<div class="wrapper">
+    <h1 mat-dialog-title class="wrapper__title">{{ data?.end? 'Объяснение результата' : 'Подсказка' }}</h1>
+    <div mat-dialog-content class="wrapper__content">{{ data?.state }}</div>
+</div>

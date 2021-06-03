@@ -13,12 +13,12 @@
   <div class="content__container">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title *ngIf="!isEnd">{{ question?.text }}</mat-card-title>
-        <mat-card-title *ngIf="isEnd">Решение:</mat-card-title>
+        <mat-card-title *ngIf="!question?.isEnd">{{ question?.text }}</mat-card-title>
+        <mat-card-title *ngIf="question?.isEnd">Решение:</mat-card-title>
       </mat-card-header>
 
       <mat-card-content>
-        <div *ngIf="!isEnd">
+        <div *ngIf="!question?.isEnd">
           <mat-action-list role="list" *ngIf="!isLoading">
             <button
               mat-list-item
@@ -30,13 +30,13 @@
           </mat-action-list>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
         </div>
-        <div *ngIf="isEnd">
+        <div *ngIf="question?.isEnd" style="text-align: center; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px;">
           {{ question?.text }}
         </div>
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button class="btn" style="margin-right: 20px">
+        <button mat-button class="btn" style="margin-right: 20px" (click)="onStart()">
           Начать сначала
         </button>
         <button
@@ -44,7 +44,6 @@
           class="btn"
           style="margin-right: 20px"
           (click)="viewHint()"
-          disabled
         >
           Помощь
         </button>

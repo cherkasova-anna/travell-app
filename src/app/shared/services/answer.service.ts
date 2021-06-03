@@ -10,7 +10,7 @@ export class AnswerService {
   constructor(public http: HttpClient) {}
 
   public getAnswerList(id: number): Observable<Answer[]> {
-    return this.http.get<Answer[]>(`${this.url}/${id}`).pipe(
+    return this.http.get<Answer[]>(`${this.url}/from/${id}`).pipe(
       catchError(() => {
         return of([]);
       })

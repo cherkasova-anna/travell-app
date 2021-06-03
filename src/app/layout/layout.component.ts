@@ -29,30 +29,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.stateService
-      .getFirstState()
-      .pipe(
-        takeUntil(this.unsubscribe$),
-        mergeMap((res) => {
-          this.question = res;
-          this.isLoading = true;
-          if (this.question) {
-            return this.answerService.getAnswerList(this.question.id);
-          } else {
-            return of([]);
-          }
-        })
-      )
-      .subscribe(
-        (res) => {
-          this.answers = res;
-          this.isLoading = false;
-        },
-        (error) => {
-          this.isLoading = false;
-          console.log(error);
-        }
-      );
+    this.onStart();
   }
 
   select(id: number) {
@@ -64,6 +41,7 @@ export class LayoutComponent implements OnInit, OnDestroy {
           this.prevId.push(this.question.id);
           console.log(this.prevId);
           this.question = res;
+          console.log(res);
           this.isLoading = true;
           if (this.question) {
             return this.answerService.getAnswerList(this.question.id);
@@ -114,9 +92,37 @@ export class LayoutComponent implements OnInit, OnDestroy {
   viewHint() {
     this.dialog.open(HintComponent, {
       data: {
-        state: this.question.id,
+        state: this.question.explanation,
+        end: this.question.isEnd
       },
     });
+  }
+
+  onStart() {
+    this.stateService
+      .getFirstState()
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        mergeMap((res) => {
+          this.question = res;
+          this.isLoading = true;
+          if (this.question) {
+            return this.answerService.getAnswerList(this.question.id);
+          } else {
+            return of([]);
+          }
+        })
+      )
+      .subscribe(
+        (res) => {
+          this.answers = res;
+          this.isLoading = false;
+        },
+        (error) => {
+          this.isLoading = false;
+          console.log(error);
+        }
+      );
   }
 
   ngOnDestroy(): void {

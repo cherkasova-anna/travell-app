@@ -1,0 +1,14 @@
+.wrapper{
+    &__content {
+        font-size: 28px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-style: italic;
+    }
+    &__title {
+        font-size: 24px;
+    }
+}
+
+.btn {
+    background-color: lightgrey;
+  }

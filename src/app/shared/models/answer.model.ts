@@ -3,5 +3,4 @@ export class Answer {
   public text: string;
   public idFrom: number;
   public idTo: number;
-  public isEnd: boolean;
 }

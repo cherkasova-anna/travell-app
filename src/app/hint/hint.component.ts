@@ -7,7 +7,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   styleUrls: ['./hint.component.scss'],
 })
 export class HintComponent implements OnInit {
-  constructor(@Inject(MAT_DIALOG_DATA) public data: number) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
   ngOnInit(): void {}
 }
