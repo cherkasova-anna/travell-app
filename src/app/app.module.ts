@@ -8,7 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HintComponent } from './hint/hint.component';
-import {AdminComponent } from './admin/admin.component';
+import { AdminComponent } from './admin/admin.component';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [AppComponent, LayoutComponent, HintComponent, AdminComponent],
@@ -18,6 +19,7 @@ import {AdminComponent } from './admin/admin.component';
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    FlexLayoutModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

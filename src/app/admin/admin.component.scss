@@ -44,13 +44,29 @@
   background-color: lightgrey;
 }
 
-.mat-expansion-panel-header{
+.mat-expansion-panel-header {
   height: auto;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
 }
 
-.mat-list-item{
-  padding: 15px;
+.mat-list {
+  .mat-list-item {
+    padding: 10px 0 10px 0;
+    height: auto;
+    font-family: "GothamPro", "Gotham Pro", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    color: #000000;
+    line-height: 28px;
+    cursor: pointer;
+    .mat-list-item-content {
+      height: 100% !important;
+    }
+  }
+  .mat-list-item:hover {
+    background-color: lightgray;
+  }
 }

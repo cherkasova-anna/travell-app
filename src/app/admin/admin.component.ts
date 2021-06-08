@@ -15,10 +15,9 @@ import { StateService } from '../shared/services/state.service';
   providers: [StateService, AnswerService],
 })
 export class AdminComponent implements OnInit, OnDestroy {
-
   unsubscribe$: Subject<void> = new Subject<void>();
   states: State[] = [];
-  columnsToDisplay = ['id', 'text']
+  isLoadingStates = true;
 
   constructor(
     private stateService: StateService,
@@ -27,10 +26,36 @@ export class AdminComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.stateService.getAllStates().subscribe((res) => {
-      this.states = res;
-      console.log(this.states)
-    })
+    this.isLoadingStates = true;
+    this.stateService
+      .getAllStates()
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe((res) => {
+        this.states = res;
+        this.isLoadingStates = false;
+        console.log(this.states);
+      });
+  }
+
+  editState(state) {
+    console.log(state);
+  }
+
+  deleteState(state) {
+    console.log(state);
+    this.stateService
+      .deleteState(state.id)
+      .pipe(
+        takeUntil(this.unsubscribe$),
+        mergeMap((res) => {
+          this.isLoadingStates = true;
+          return this.stateService.getAllStates();
+        })
+      )
+      .subscribe((res) => {
+        this.isLoadingStates = false;
+        this.states = res;
+      });
   }
 
   ngOnDestroy(): void {

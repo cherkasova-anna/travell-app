@@ -30,6 +30,14 @@ export class StateService {
       catchError(() => {
         return of(null);
       })
-    )
+    );
+  }
+
+  public deleteState(id: number): Observable<any> {
+    return this.http.delete(`${this.url}/${id}`).pipe(
+      catchError(() => {
+        return of(null);
+      })
+    );
   }
 }
