@@ -1,11 +1,17 @@
 <mat-toolbar class="nav">
   <button
+    mat-button
     mat-icon-button
     class="example-icon"
-    aria-label="Example icon-button with menu icon"
+    [matMenuTriggerFor]="menu"
   >
     <mat-icon>menu</mat-icon>
   </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="goToEdit()">
+      Редактирование базы знаний
+    </button>
+  </mat-menu>
   <span>Планирование путешествия</span>
 </mat-toolbar>
 
@@ -13,7 +19,9 @@
   <div class="content__container">
     <mat-card class="example-card">
       <mat-card-header>
-        <mat-card-title *ngIf="!question?.isEnd">{{ question?.text }}</mat-card-title>
+        <mat-card-title *ngIf="!question?.isEnd">{{
+          question?.text
+        }}</mat-card-title>
         <mat-card-title *ngIf="question?.isEnd">Решение:</mat-card-title>
       </mat-card-header>
 
@@ -30,13 +38,27 @@
           </mat-action-list>
           <mat-spinner *ngIf="isLoading"></mat-spinner>
         </div>
-        <div *ngIf="question?.isEnd" style="text-align: center; font-weight: bold; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; font-size: 30px;">
+        <div
+          *ngIf="question?.isEnd"
+          style="
+            text-align: center;
+            font-weight: bold;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman',
+              serif;
+            font-size: 30px;
+          "
+        >
           {{ question?.text }}
         </div>
       </mat-card-content>
 
       <mat-card-actions>
-        <button mat-button class="btn" style="margin-right: 20px" (click)="onStart()">
+        <button
+          mat-button
+          class="btn"
+          style="margin-right: 20px"
+          (click)="onStart()"
+        >
           Начать сначала
         </button>
         <button

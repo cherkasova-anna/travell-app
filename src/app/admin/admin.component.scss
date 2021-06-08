@@ -23,6 +23,7 @@
   top: 50px;
   min-height: 400px;
   min-width: 400px;
+  font-size: 18px;
 }
 
 .mat-card {
@@ -41,4 +42,15 @@
 
 .btn {
   background-color: lightgrey;
+}
+
+.mat-expansion-panel-header{
+  height: auto;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+}
+
+.mat-list-item{
+  padding: 15px;
 }

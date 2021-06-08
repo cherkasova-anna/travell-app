@@ -1,0 +1,42 @@
+<mat-toolbar class="nav">
+  <button
+    mat-icon-button
+    class="example-icon"
+    aria-label="Example icon-button with menu icon"
+  ></button>
+  <span>Управление базой знаний</span>
+</mat-toolbar>
+
+<div class="content">
+  <div class="content__container">
+    <mat-card class="example-card">
+      <mat-card-content>
+        <button
+        mat-button
+        class="btn"
+        style="margin-bottom: 20px;"
+      >
+        Добавить
+      </button>
+        <mat-accordion class="example-headers-align" multi="false">
+          <mat-expansion-panel *ngFor="let state of states">
+            <mat-expansion-panel-header class="mat-list-item">
+              <mat-panel-title>
+                {{!state.isEnd? 'Вопрос': 'Решение'}}&nbsp;{{state.id}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{state.text}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+        
+            <mat-form-field>
+              <mat-label>Date</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <button>Сохранить</button>
+          </mat-expansion-panel>
+        </mat-accordion>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

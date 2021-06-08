@@ -24,4 +24,12 @@ export class StateService {
       })
     );
   }
+
+  public getAllStates(): Observable<State[]> {
+    return this.http.get<State[]>(`${this.url}`).pipe(
+      catchError(() => {
+        return of(null);
+      })
+    )
+  }
 }

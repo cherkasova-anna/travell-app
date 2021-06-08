@@ -8,9 +8,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { HintComponent } from './hint/hint.component';
+import {AdminComponent } from './admin/admin.component';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, HintComponent],
+  declarations: [AppComponent, LayoutComponent, HintComponent, AdminComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,

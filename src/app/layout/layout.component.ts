@@ -7,6 +7,8 @@ import { Answer } from '../shared/models/answer.model';
 import { State } from '../shared/models/state.model';
 import { AnswerService } from '../shared/services/answer.service';
 import { StateService } from '../shared/services/state.service';
+import {ActivatedRoute, Router} from '@angular/router';
+
 
 @Component({
   selector: 'app-layout',
@@ -25,7 +27,9 @@ export class LayoutComponent implements OnInit, OnDestroy {
   constructor(
     private stateService: StateService,
     private answerService: AnswerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
@@ -123,6 +127,10 @@ export class LayoutComponent implements OnInit, OnDestroy {
           console.log(error);
         }
       );
+  }
+
+  goToEdit(){
+    this.router.navigate(['/admin'], {relativeTo: this.route});
   }
 
   ngOnDestroy(): void {
