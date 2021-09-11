@@ -10,9 +10,17 @@ import { HttpClientModule } from '@angular/common/http';
 import { HintComponent } from './hint/hint.component';
 import { AdminComponent } from './admin/admin.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { EditFormComponent } from './form/edit-form.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, HintComponent, AdminComponent],
+  declarations: [
+    AppComponent,
+    LayoutComponent,
+    HintComponent,
+    AdminComponent,
+    EditFormComponent,
+  ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -20,6 +28,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     MaterialModule,
     HttpClientModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

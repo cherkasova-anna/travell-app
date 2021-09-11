@@ -1,0 +1,78 @@
+<form
+  fxLayout="column"
+  fxLayoutGap="20px"
+  class="form"
+  *ngIf="editForm"
+  [formGroup]="editForm"
+>
+  <div>
+    <mat-radio-group formControlName="type" (change)="onChangeType($event)">
+      <mat-radio-button [value]="false">Вопрос</mat-radio-button>
+      <mat-radio-button [value]="true">Решение</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  <mat-form-field fxFlex>
+    <textarea
+      matInput
+      matTextareaAutosize
+      matAutosizeMinRows="2"
+      formControlName="text"
+    ></textarea>
+  </mat-form-field>
+  <div fxLayout="column" *ngIf="!isEnd">
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <p>Варианты ответов</p>
+      <button
+        mat-button
+        class="btn"
+        style="margin-left: 20px"
+        (click)="addAnswer()"
+      >
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+    <div fxLayout="row" fxFill style="font-weight: bold">
+      <div fxFlex="70">Текст ответа</div>
+      <div fxFlex="30">К какому состоянию</div>
+    </div>
+    <mat-list formArrayName="answers">
+      <div *ngFor="let answer of answers; let i = index">
+        <mat-list-item [formGroupName]="i">
+          <div fxLayout="row" fxFill fxLayoutGap="20px">
+            <mat-form-field fxFlex="70">
+              <input matInput formControlName="answer" />
+            </mat-form-field>
+            <mat-form-field fxFlex="20">
+              <input matInput formControlName="to" />
+            </mat-form-field>
+            <div fxFlex="10">
+                <mat-icon (click)="deleteAnswer(i)"style="cursor: pointer">close</mat-icon>
+            </div>            
+          </div>
+        </mat-list-item>
+      </div>
+    </mat-list>
+  </div>
+
+  <div fxFlex>
+    <p>Помощь</p>
+    <mat-form-field appearance="fill">
+      <mat-label></mat-label>
+      <textarea
+        matInput
+        matTextareaAutosize
+        matAutosizeMinRows="4"
+        formControlName="explanation"
+      ></textarea>
+    </mat-form-field>
+  </div>
+  <button
+    mat-button
+    class="btn"
+    style="margin-top: 20px"
+    fxFlexAlign="center"
+    (click)="onSubmit()"
+  >
+    Сохранить
+  </button>
+</form>

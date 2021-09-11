@@ -1,0 +1,18 @@
+.form {
+  font-size: 18px;
+  padding: 15px;
+  margin: 5px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+.mat-radio-button ~ .mat-radio-button {
+  margin-left: 16px;
+}
+
+.btn {
+  background-color: lightgrey;
+}
+
+.mat-form-field {
+  width: 100%;
+}

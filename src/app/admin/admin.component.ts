@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { of, Subject } from 'rxjs';
 import { takeUntil, mergeMap } from 'rxjs/operators';
 import { HintComponent } from '../hint/hint.component';
@@ -18,11 +19,15 @@ export class AdminComponent implements OnInit, OnDestroy {
   unsubscribe$: Subject<void> = new Subject<void>();
   states: State[] = [];
   isLoadingStates = true;
+  isOpenForm = false;
+  editId;
+  isAddForm = false;
 
   constructor(
     private stateService: StateService,
     private answerService: AnswerService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +43,18 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   editState(state) {
-    console.log(state);
+    if (this.isOpenForm && state.id === this.editId) {
+      this.isOpenForm = false;
+      return;
+    }
+    if (this.isOpenForm && state.id !== this.editId) {
+      this.editId = state.id;
+      return;
+    }
+    if (!this.isOpenForm) {
+      this.isOpenForm = true;
+      this.editId = state.id;
+    }
   }
 
   deleteState(state) {
@@ -49,9 +65,32 @@ export class AdminComponent implements OnInit, OnDestroy {
         takeUntil(this.unsubscribe$),
         mergeMap((res) => {
           this.isLoadingStates = true;
+          this.snackBar.open('Запись успешно удалена!', '', { duration: 3000 });
           return this.stateService.getAllStates();
         })
       )
+      .subscribe((res) => {
+        this.isLoadingStates = false;
+        this.states = res;
+      });
+  }
+
+  addState() {
+    this.isAddForm = !this.isAddForm;
+  }
+
+  onSubmit(event) {
+    if (event) {
+      this.isAddForm = false;
+      this.snackBar.open('Запись успешно добавлена!', '', { duration: 3000 });
+    } else {
+      this.snackBar.open('Запись успешно изменена!', '', { duration: 3000 });
+      this.isOpenForm = false;
+    }
+    this.isLoadingStates = true;
+    this.stateService
+      .getAllStates()
+      .pipe(takeUntil(this.unsubscribe$))
       .subscribe((res) => {
         this.isLoadingStates = false;
         this.states = res;
